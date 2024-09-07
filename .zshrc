@@ -58,6 +58,7 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 # Aliases
 alias v='nvim'
 alias ls='ls --color'
+alias python='python3'
 
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
