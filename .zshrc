@@ -1,9 +1,3 @@
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # Setup zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
@@ -15,9 +9,6 @@ fi
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source "${ZINIT_HOME}/zinit.zsh"
-
-# Install zinit plugins
-zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
@@ -31,8 +22,6 @@ zinit snippet OMZP::sudo
 autoload -U compinit && compinit
 
 zinit cdreplay -q
-
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 bindkey -e
 bindkey '^p' history-search-backward
@@ -56,9 +45,18 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
 # Aliases
-alias v='nvim'
+alias vim='nvim'
 alias ls='ls --color'
 alias python='python3'
+alias lg="lazygit"
 
 # Shell integrations
 eval "$(zoxide init --cmd cd zsh)"
+
+# Oh My Posh
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.toml)"
+
+# Don't load OMP for default terminal app
+if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
+  eval "$(oh-my-posh init zsh)"
+fi
