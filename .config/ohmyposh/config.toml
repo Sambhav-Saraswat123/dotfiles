@@ -5,24 +5,22 @@ console_title_template = '{{ .Shell }} in {{ .Folder }}'
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
-  newline = true
 
   [[blocks.segments]]
     type = 'path'
     style = 'plain'
     background = 'transparent'
     foreground = 'p:blue'
-    template = '{{ .Path }}'
 
     [blocks.segments.properties]
       style = 'full'
-
-  [[blocks.segments]]
-    type = 'text'
-    style = 'plain'
-    background = 'transparent'
-    foreground = 'white'
-    template = ' ❯'
+    
+    [[blocks.segments]]
+      type = 'text'
+      style = 'plain'
+      background = 'transparent'
+      foreground = 'white'
+      template = '>'
 
 [palette]
 blue = '#7CB0FF'
